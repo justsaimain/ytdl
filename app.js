@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const YD = new YoutubeMp3Downloader({
-  ffmpegPath: "/usr/local/bin/ffmpeg", // FFmpeg binary location
+  ffmpegPath: "/usr/bin/ffmpeg", // FFmpeg binary location
   outputPath: __dirname + "/mp3", // Output file location (default: the home directory)
   youtubeVideoQuality: "highestaudio", // Desired video quality (default: highestaudio)
   queueParallelism: 2, // Download parallelism (default: 1)
@@ -21,6 +21,10 @@ const port = process.env.PORT;
 
 console.log("App is running at Port " + port);
 app.listen(port, "localhost");
+
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
 
 app.get("/yt/mp3/:id", (req, res) => {
   const videoId = req.params.id;
