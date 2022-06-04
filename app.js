@@ -38,6 +38,5 @@ app.get("/yt/mp3/:id", (req, res) => {
     const file = fs.readFileSync(__dirname + "/mp3/" + fileName);
     console.log("file", file);
     res.download(__dirname + "/mp3/" + fileName);
-    res.end();
   });
 });
